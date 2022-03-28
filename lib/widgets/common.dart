@@ -60,3 +60,26 @@ Widget flexibleText({
     ),
   );
 }
+
+Future customDialog({required BuildContext context, required String text}) {
+  return showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        title: const Text('Notification'),
+        content: Text(text),
+        actions: <Widget>[
+          FlatButton(
+            child: const Text('Ok'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}

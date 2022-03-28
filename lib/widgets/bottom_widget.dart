@@ -79,7 +79,10 @@ class BottomWidget extends StatelessWidget {
                           18,
                         );
                       } else {
-                        print('1');
+                        customDialog(
+                          context: context,
+                          text: 'You have to set your home location',
+                        );
                       }
                     },
                     child: Column(
