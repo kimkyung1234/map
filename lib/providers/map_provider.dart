@@ -4,8 +4,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:tuple/tuple.dart';
 
 class MapProvider with ChangeNotifier {
-  late Tuple2 home;
-  Tuple2 get getHome => home;
+  Tuple2? home;
+  Tuple2? get getHome => home;
 
   void setHome(Tuple2 location) {
     home = location;

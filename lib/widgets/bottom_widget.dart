@@ -72,11 +72,15 @@ class BottomWidget extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      Tuple2 a = provider.getHome;
-                      mapController.move(
-                        LatLng(a.item1, a.item2),
-                        18,
-                      );
+                      if (provider.getHome != null) {
+                        Tuple2? data = provider.getHome;
+                        mapController.move(
+                          LatLng(data?.item1, data?.item2),
+                          18,
+                        );
+                      } else {
+                        print('1');
+                      }
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
