@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:map/pages/setting.dart';
 import 'package:map/providers/map_provider.dart';
 import 'package:map/widgets/common.dart';
+import 'package:map/widgets/recommend_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
@@ -127,14 +128,7 @@ class BottomWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            height: 200,
-            decoration: const BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.all(Radius.circular(24.0)),
-            ),
-            margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-          ),
+          RecommendWidget(),
         ],
       ),
     );
