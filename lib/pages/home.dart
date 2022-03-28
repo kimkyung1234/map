@@ -63,7 +63,7 @@ class MapPage extends StatelessWidget {
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
       ),
-      margin: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: const Center(child: Icon(Icons.keyboard_arrow_up_outlined)),
     );
   }
