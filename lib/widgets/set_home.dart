@@ -29,7 +29,9 @@ class SetHomeWidget extends StatelessWidget {
               onTap: (tapPosition, point) => {
                 provider.addPin(LatLng(point.latitude, point.longitude)),
               },
-              center: LatLng(snapshot.data!.item1, snapshot.data!.item2),
+              center: provider.getHome == null
+                  ? LatLng(snapshot.data!.item1, snapshot.data!.item2)
+                  : LatLng(provider.getHome?.item1, provider.getHome?.item2),
               zoom: 10.0,
               minZoom: 3,
             ),
