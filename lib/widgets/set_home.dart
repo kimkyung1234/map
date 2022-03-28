@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/key.dart';
+import 'package:map/providers/map_provider.dart';
 import 'package:map/services/api.dart';
+import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class SetHomeWidget extends StatelessWidget {
   MapController mapController = MapController();
+
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MapProvider>(context);
+
     return FutureBuilder<Tuple2<double, double>>(
       future: getLocation(),
       builder: (context, snapshot) {
@@ -17,12 +22,12 @@ class SetHomeWidget extends StatelessWidget {
         }
         return Container(
           height: 300,
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: FlutterMap(
             mapController: mapController,
             options: MapOptions(
               onTap: (tapPosition, point) => {
-                print(point.toString()),
+                provider.addPin(LatLng(point.latitude, point.longitude)),
               },
               center: LatLng(snapshot.data!.item1, snapshot.data!.item2),
               zoom: 10.0,
@@ -35,6 +40,9 @@ class SetHomeWidget extends StatelessWidget {
                 additionalOptions: {
                   'accessToken': Keys.mapbox2,
                 },
+              ),
+              MarkerLayerOptions(
+                markers: provider.getMarkers,
               ),
             ],
           ),

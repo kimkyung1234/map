@@ -18,7 +18,7 @@ class MapPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: SlidingUpPanel(
         renderPanelSheet: false,
-        panel: BottomWidget(),
+        panel: BottomWidget(mapController: mapController),
         collapsed: _floatingCollapsed(),
         body: FutureBuilder<Tuple2<double, double>>(
           future: getLocation(),

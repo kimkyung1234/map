@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:map/pages/setting.dart';
+import 'package:map/providers/map_provider.dart';
 import 'package:map/widgets/common.dart';
+import 'package:provider/provider.dart';
+import 'package:tuple/tuple.dart';
 
 class BottomWidget extends StatelessWidget {
+  final MapController mapController;
+
+  const BottomWidget({
+    Key? key,
+    required this.mapController,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MapProvider>(context);
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -57,7 +71,13 @@ class BottomWidget extends StatelessWidget {
                     ),
                   ),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Tuple2 a = provider.getHome;
+                      mapController.move(
+                        LatLng(a.item1, a.item2),
+                        18,
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

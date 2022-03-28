@@ -11,7 +11,7 @@ Widget carryImageWidget(
         (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
       if (loadingProgress == null) {
         return ClipRRect(
-          borderRadius: BorderRadius.circular(radius), // Image border
+          borderRadius: BorderRadius.circular(radius),
           child: SizedBox.fromSize(
             child: child,
           ),
