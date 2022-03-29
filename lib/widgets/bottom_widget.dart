@@ -10,16 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
 class BottomWidget extends StatelessWidget {
-  final MapController mapController;
-
-  const BottomWidget({
-    Key? key,
-    required this.mapController,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MapProvider>(context);
+    MapController? mapController = provider.getMapController;
 
     return Container(
       decoration: const BoxDecoration(
@@ -83,7 +77,7 @@ class BottomWidget extends StatelessWidget {
                     onTap: () {
                       if (provider.getHome != null) {
                         Tuple2? data = provider.getHome;
-                        mapController.move(
+                        mapController!.move(
                           LatLng(data?.item1, data?.item2),
                           18,
                         );
@@ -136,7 +130,7 @@ class BottomWidget extends StatelessWidget {
               ],
             ),
           ),
-          RecommendWidget(mapController: mapController),
+          RecommendWidget(mapController: mapController!),
         ],
       ),
     );

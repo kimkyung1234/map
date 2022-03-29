@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:map/pages/show.dart';
 import 'package:map/services/api.dart';
 import 'package:map/widgets/common.dart';
 import 'package:mapbox_search/mapbox_search.dart';
@@ -44,28 +45,36 @@ class ResultPage extends StatelessWidget {
             itemBuilder: (_, index) {
               final data = snapshot.data?[index];
               return GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShowPage(data: data!),
                     ),
-                    height: 130,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        flexibleText(
-                          text: data?.placeName ?? '',
-                          alignment: Alignment.topLeft,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        flexibleText(
-                          text: data?.text ?? '',
-                          fontSize: 14,
-                          alignment: Alignment.topLeft,
-                        ),
-                      ],
-                    ),
-                  ));
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  height: 130,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      flexibleText(
+                        text: data?.placeName ?? '',
+                        alignment: Alignment.topLeft,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      flexibleText(
+                        text: data?.text ?? '',
+                        fontSize: 14,
+                        alignment: Alignment.topLeft,
+                      ),
+                    ],
+                  ),
+                ),
+              );
             },
           );
         },

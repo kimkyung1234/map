@@ -20,6 +20,8 @@ class MapPage extends StatelessWidget {
     var provider = Provider.of<MapProvider>(context);
     var theme = Provider.of<ThemeChanger>(context);
 
+    provider.setMapController(mapController);
+
     return Scaffold(
       key: _scaffoldKey,
       extendBodyBehindAppBar: false,
@@ -31,7 +33,7 @@ class MapPage extends StatelessWidget {
       ),
       body: SlidingUpPanel(
         renderPanelSheet: false,
-        panel: BottomWidget(mapController: mapController),
+        panel: BottomWidget(),
         collapsed: _floatingCollapsed(),
         body: FutureBuilder<Tuple2<double, double>>(
           future: getLocation(),

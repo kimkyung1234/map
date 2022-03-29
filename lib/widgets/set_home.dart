@@ -24,7 +24,7 @@ class SetHomeWidget extends StatelessWidget {
           height: 300,
           margin: const EdgeInsets.all(10),
           child: FlutterMap(
-            mapController: mapController,
+            // mapController: mapController,
             options: MapOptions(
               onTap: (tapPosition, point) => {
                 provider.addPin(LatLng(point.latitude, point.longitude)),

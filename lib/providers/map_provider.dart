@@ -31,7 +31,10 @@ class MapProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  refresh() {
-    notifyListeners();
+  MapController? _mapController;
+  MapController? get getMapController => _mapController;
+
+  void setMapController(MapController mapController) {
+    _mapController = mapController;
   }
 }
