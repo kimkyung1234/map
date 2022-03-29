@@ -7,6 +7,9 @@ class PopupMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = Provider.of<ThemeChanger>(context);
     return PopupMenuButton<int>(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      ),
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 1,

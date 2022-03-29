@@ -2,20 +2,18 @@ import 'package:map/key.dart';
 import 'package:mapbox_search/mapbox_search.dart';
 
 void main() async {
-  var a = await geoCoding(Keys.mapbox2);
+  List<MapBoxPlace>? a = await placesSearch(Keys.mapbox2);
   print(a);
 }
 
-Future geoCoding(String apiKey) async {
-  var geoCodingService = ReverseGeoCoding(
+Future<List<MapBoxPlace>?> placesSearch(String apiKey) async {
+  var placesService = PlacesSearch(
     apiKey: apiKey,
-    limit: 10,
+    limit: 5,
   );
 
-  var addresses = await geoCodingService.getAddress(Location(
-    lat: 37.517436,
-    lng: 127.037209,
-  ));
+  var places = await placesService.getPlaces("patio");
 
-  return addresses;
+  print(places);
+  return places;
 }

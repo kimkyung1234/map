@@ -30,3 +30,13 @@ Future<List<MapBoxPlace>?> recommendPlace() async {
 
   return addresses;
 }
+
+Future<List<MapBoxPlace>?> placesSearch({required String inputText}) async {
+  var placesService = PlacesSearch(
+    apiKey: Keys.mapbox2,
+    limit: 10,
+  );
+
+  var places = await placesService.getPlaces(inputText);
+  return places;
+}

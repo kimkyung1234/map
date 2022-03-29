@@ -22,7 +22,7 @@ class MapPage extends StatelessWidget {
 
     return Scaffold(
       key: _scaffoldKey,
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
@@ -55,27 +55,25 @@ class MapPage extends StatelessWidget {
                     TileLayerOptions(
                       urlTemplate:
                           'https://api.mapbox.com/styles/v1/mapbox/${theme.getTheme}/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
-                      // 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
                       additionalOptions: {
                         'accessToken': Keys.mapbox2,
                       },
                     ),
                     MarkerLayerOptions(
-                      markers: provider.getHome != null
-                          ? [
-                              Marker(
-                                width: 80.0,
-                                height: 80.0,
-                                point: LatLng(provider.getHome?.item1,
-                                    provider.getHome?.item2),
-                                builder: (ctx) => const Icon(
-                                  Icons.home,
-                                  color: Colors.orange,
-                                  size: 40,
-                                ),
-                              )
-                            ]
-                          : [],
+                      markers: [
+                        if (provider.getHome != null)
+                          Marker(
+                            width: 80.0,
+                            height: 80.0,
+                            point: LatLng(provider.getHome?.item1,
+                                provider.getHome?.item2),
+                            builder: (ctx) => const Icon(
+                              Icons.home,
+                              color: Colors.orange,
+                              size: 40,
+                            ),
+                          ),
+                      ],
                     ),
                   ],
                 ),

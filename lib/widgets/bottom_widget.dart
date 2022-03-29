@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:map/pages/search.dart';
 import 'package:map/pages/setting.dart';
 import 'package:map/providers/map_provider.dart';
 import 'package:map/widgets/common.dart';
@@ -45,7 +46,14 @@ class BottomWidget extends StatelessWidget {
                     ),
                   ),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchPage(),
+                        ),
+                      );
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
