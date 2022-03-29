@@ -3,8 +3,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/key.dart';
 import 'package:map/providers/map_provider.dart';
+import 'package:map/providers/theme_changer.dart';
 import 'package:map/services/api.dart';
 import 'package:map/widgets/bottom_widget.dart';
+import 'package:map/widgets/popup_menu.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:tuple/tuple.dart';
@@ -16,6 +18,7 @@ class MapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MapProvider>(context);
+    var theme = Provider.of<ThemeChanger>(context);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -23,11 +26,8 @@ class MapPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        child: const Icon(
-          Icons.gps_fixed,
-          color: Colors.black,
-        ),
-        onPressed: () {},
+        onPressed: null,
+        child: PopupMenu(),
       ),
       body: SlidingUpPanel(
         renderPanelSheet: false,
@@ -54,7 +54,8 @@ class MapPage extends StatelessWidget {
                   layers: [
                     TileLayerOptions(
                       urlTemplate:
-                          'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
+                          'https://api.mapbox.com/styles/v1/mapbox/${theme.getTheme}/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
+                      // 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
                       additionalOptions: {
                         'accessToken': Keys.mapbox2,
                       },
@@ -69,6 +70,7 @@ class MapPage extends StatelessWidget {
                                     provider.getHome?.item2),
                                 builder: (ctx) => const Icon(
                                   Icons.home,
+                                  color: Colors.orange,
                                   size: 40,
                                 ),
                               )
