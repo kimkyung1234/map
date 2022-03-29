@@ -38,10 +38,24 @@ class ShowPage extends StatelessWidget {
         layers: [
           TileLayerOptions(
             urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
+                'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${Keys.mapbox2}',
             additionalOptions: {
               'accessToken': Keys.mapbox2,
             },
+          ),
+          MarkerLayerOptions(
+            markers: [
+              Marker(
+                width: 80.0,
+                height: 80.0,
+                point: LatLng(data.center![1], data.center![0]),
+                builder: (ctx) => const Icon(
+                  Icons.place,
+                  color: Colors.red,
+                  size: 40,
+                ),
+              ),
+            ],
           ),
         ],
       ),
