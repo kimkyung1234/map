@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/key.dart';
+import 'package:map/providers/map_provider.dart';
 import 'package:map/services/api.dart';
 import 'package:map/widgets/bottom_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:tuple/tuple.dart';
 
@@ -13,9 +15,20 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MapProvider>(context);
+
     return Scaffold(
       key: _scaffoldKey,
       extendBodyBehindAppBar: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        child: const Icon(
+          Icons.gps_fixed,
+          color: Colors.black,
+        ),
+        onPressed: () {},
+      ),
       body: SlidingUpPanel(
         renderPanelSheet: false,
         panel: BottomWidget(mapController: mapController),
@@ -45,6 +58,22 @@ class MapPage extends StatelessWidget {
                       additionalOptions: {
                         'accessToken': Keys.mapbox2,
                       },
+                    ),
+                    MarkerLayerOptions(
+                      markers: provider.getHome != null
+                          ? [
+                              Marker(
+                                width: 80.0,
+                                height: 80.0,
+                                point: LatLng(provider.getHome?.item1,
+                                    provider.getHome?.item2),
+                                builder: (ctx) => const Icon(
+                                  Icons.home,
+                                  size: 40,
+                                ),
+                              )
+                            ]
+                          : [],
                     ),
                   ],
                 ),

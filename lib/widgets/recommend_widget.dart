@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:map/services/api.dart';
 import 'package:mapbox_search/mapbox_search.dart';
 
 class RecommendWidget extends StatelessWidget {
+  final MapController mapController;
+
+  const RecommendWidget({
+    Key? key,
+    required this.mapController,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<MapBoxPlace>?>(
@@ -26,7 +35,13 @@ class RecommendWidget extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 width: MediaQuery.of(context).size.width * 0.6,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    mapController.move(
+                      LatLng(data?.geometry?.coordinates?[1] ?? 0,
+                          data?.geometry?.coordinates?[0] ?? 0),
+                      18,
+                    );
+                  },
                   child: Container(
                     decoration: const BoxDecoration(
                       color: Color(0xffFE914A),

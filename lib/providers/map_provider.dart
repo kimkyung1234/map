@@ -15,7 +15,7 @@ class MapProvider with ChangeNotifier {
   List<Marker> markers = [];
   List<Marker> get getMarkers => markers;
 
-  addPin(LatLng latlng) {
+  void addPin(LatLng latlng) {
     markers.clear();
     markers.add(Marker(
       width: 30.0,
@@ -28,6 +28,10 @@ class MapProvider with ChangeNotifier {
       ),
     ));
     home = Tuple2(latlng.latitude, latlng.longitude);
+    notifyListeners();
+  }
+
+  refresh() {
     notifyListeners();
   }
 }

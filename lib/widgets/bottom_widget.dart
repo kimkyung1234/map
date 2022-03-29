@@ -128,7 +128,7 @@ class BottomWidget extends StatelessWidget {
               ],
             ),
           ),
-          RecommendWidget(),
+          RecommendWidget(mapController: mapController),
         ],
       ),
     );
