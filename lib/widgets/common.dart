@@ -83,3 +83,9 @@ Future customDialog({required BuildContext context, required String text}) {
     },
   );
 }
+
+Widget customCircularIndicator() {
+  return const CircularProgressIndicator(
+    valueColor: AlwaysStoppedAnimation<Color>(Color(0xff2BF0AE)),
+  );
+}

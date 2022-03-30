@@ -31,80 +31,6 @@ class BottomWidget extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                Container(
-                  width: 140,
-                  decoration: const BoxDecoration(
-                    color: Color(0xff5AB27D),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(24.0),
-                    ),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SearchPage(),
-                        ),
-                      );
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
-                        flexibleText(
-                          text: 'Search',
-                          textColor: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 7),
-                Container(
-                  width: 100,
-                  decoration: const BoxDecoration(
-                    color: Color(0xffF8B8BC),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(24.0),
-                    ),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      if (provider.getHome != null) {
-                        Tuple2? data = provider.getHome;
-                        mapController!.move(
-                          LatLng(data?.item1, data?.item2),
-                          18,
-                        );
-                      } else {
-                        customDialog(
-                          context: context,
-                          text: 'You have to set your home location',
-                        );
-                      }
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.home,
-                          color: Colors.white,
-                        ),
-                        flexibleText(
-                          text: 'Home',
-                          textColor: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
                 Column(
                   children: [
                     Container(
@@ -144,30 +70,104 @@ class BottomWidget extends StatelessWidget {
                       width: 75,
                       height: 80,
                       decoration: const BoxDecoration(
-                        color: Color(0xffFFF2D0),
+                        color: Color(0xff86ECC3),
                         borderRadius: BorderRadius.all(
                           Radius.circular(24.0),
                         ),
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => SettingPage(),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SearchPage(),
+                            ),
+                          );
                         },
                         child: const Icon(
-                          Icons.star,
+                          Icons.search,
                           color: Colors.black,
                         ),
                       ),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(width: 7),
+                Container(
+                  width: 120,
+                  decoration: const BoxDecoration(
+                    color: Color(0xff3C6957),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(24.0),
+                    ),
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (provider.getHome != null) {
+                        Tuple2? data = provider.getHome;
+                        mapController!.move(
+                          LatLng(data?.item1, data?.item2),
+                          18,
+                        );
+                      } else {
+                        customDialog(
+                          context: context,
+                          text: 'You have to set your home location',
+                        );
+                      }
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.home,
+                          color: Colors.white,
+                        ),
+                        flexibleText(
+                          text: 'Home',
+                          textColor: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  width: 120,
+                  decoration: const BoxDecoration(
+                    color: Color(0xff008537),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(24.0),
+                    ),
+                  ),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.cloud,
+                          color: Colors.white,
+                        ),
+                        flexibleText(
+                          text: 'Weather',
+                          textColor: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
+          ),
+          flexibleText(
+            text: 'Surrounding Area',
+            fontSize: 27,
+            fontWeight: FontWeight.bold,
+            alignment: Alignment.topLeft,
+            padding: const EdgeInsets.only(left: 13, bottom: 10),
           ),
           RecommendWidget(mapController: mapController!),
         ],

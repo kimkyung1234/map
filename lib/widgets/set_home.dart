@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:map/key.dart';
 import 'package:map/providers/map_provider.dart';
 import 'package:map/services/api.dart';
+import 'package:map/widgets/common.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
@@ -18,7 +19,7 @@ class SetHomeWidget extends StatelessWidget {
       future: getLocation(),
       builder: (_, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: customCircularIndicator());
         }
         var currentLocation = snapshot.data;
         return Container(

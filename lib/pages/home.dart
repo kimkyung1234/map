@@ -6,7 +6,9 @@ import 'package:map/providers/map_provider.dart';
 import 'package:map/providers/theme_changer.dart';
 import 'package:map/services/api.dart';
 import 'package:map/widgets/bottom_widget.dart';
+import 'package:map/widgets/common.dart';
 import 'package:map/widgets/popup_menu.dart';
+import 'package:map/widgets/temp_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:tuple/tuple.dart';
@@ -39,7 +41,7 @@ class MapPage extends StatelessWidget {
           future: getLocation(),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(child: customCircularIndicator());
             }
             return Stack(
               children: [
@@ -79,6 +81,13 @@ class MapPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: WeatherWidget(),
+                  ),
+                )
               ],
             );
           },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:map/pages/show.dart';
 import 'package:map/services/api.dart';
+import 'package:map/widgets/common.dart';
 import 'package:mapbox_search/mapbox_search.dart';
 
 class RecommendWidget extends StatelessWidget {
@@ -18,7 +19,7 @@ class RecommendWidget extends StatelessWidget {
       future: recommendPlace(),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: customCircularIndicator());
         } else if (snapshot.data?.length == 0) {
           return const SizedBox();
         }
@@ -45,7 +46,7 @@ class RecommendWidget extends StatelessWidget {
                   },
                   child: Container(
                     decoration: const BoxDecoration(
-                      color: Color(0xffFE914A),
+                      color: Color(0xff9EB5AC),
                       borderRadius: BorderRadius.all(
                         Radius.circular(20),
                       ),
@@ -53,7 +54,10 @@ class RecommendWidget extends StatelessWidget {
                     child: Center(
                       child: Text(
                         data?.text ?? '',
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
