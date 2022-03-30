@@ -9,7 +9,7 @@ class MapProvider with ChangeNotifier {
 
   void setHome(Tuple2 location) {
     home = location;
-    notifyListeners();
+    // notifyListeners();
   }
 
   List<Marker> markers = [];
@@ -27,7 +27,7 @@ class MapProvider with ChangeNotifier {
         size: 35,
       ),
     ));
-    home = Tuple2(latlng.latitude, latlng.longitude);
+    setHome(Tuple2(latlng.latitude, latlng.longitude));
     notifyListeners();
   }
 

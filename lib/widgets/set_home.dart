@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:map/db/home_location.dart';
 import 'package:map/key.dart';
-import 'package:map/models/location.dart';
 import 'package:map/providers/map_provider.dart';
 import 'package:map/services/api.dart';
 import 'package:provider/provider.dart';
@@ -15,17 +13,14 @@ class SetHomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<MapProvider>(context);
-    var locationProvider = Provider.of<HomeLocation>(context);
 
-    return FutureBuilder(
-      future: Future.wait([getLocation(), locationProvider.retrieveLocation()]),
-      builder: (_, AsyncSnapshot<List<dynamic>> snapshot) {
+    return FutureBuilder<Tuple2<double, double>>(
+      future: getLocation(),
+      builder: (_, snapshot) {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
-        Tuple2<double, double> currentLocation = snapshot.data![0];
-        List<Location> homeLocation = snapshot.data![1];
-
+        var currentLocation = snapshot.data;
         return Container(
           height: 300,
           margin: const EdgeInsets.all(10),
@@ -33,23 +28,10 @@ class SetHomeWidget extends StatelessWidget {
             options: MapOptions(
               onTap: (tapPosition, point) => {
                 provider.addPin(LatLng(point.latitude, point.longitude)),
-                if (homeLocation.length == 0)
-                  {
-                    locationProvider.insertLocation(
-                        1, point.latitude, point.longitude)
-                  }
-                else if (homeLocation.length == 1)
-                  {
-                    locationProvider.updateItem(
-                        1, point.latitude, point.longitude)
-                  }
               },
-              center: homeLocation.length == 0
-                  ? LatLng(currentLocation.item1, currentLocation.item2)
-                  : LatLng(homeLocation[0].lat, homeLocation[0].lon),
-              // center: provider.getHome == null
-              //     ? LatLng(currentLocation.item1, currentLocation.item2)
-              //     : LatLng(provider.getHome?.item1, provider.getHome?.item2),
+              center: provider.getHome == null
+                  ? LatLng(currentLocation!.item1, currentLocation.item2)
+                  : LatLng(provider.getHome?.item1, provider.getHome?.item2),
               zoom: 10.0,
               minZoom: 3,
             ),
