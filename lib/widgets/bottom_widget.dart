@@ -64,7 +64,7 @@ class BottomWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 15),
+                const SizedBox(width: 7),
                 Container(
                   width: 100,
                   decoration: const BoxDecoration(
@@ -104,29 +104,68 @@ class BottomWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  width: 75,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(24.0),
-                    ),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SettingPage(),
+                const SizedBox(width: 8),
+                Column(
+                  children: [
+                    Container(
+                      width: 75,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(24.0),
                         ),
-                      );
-                    },
-                    child: const Icon(
-                      Icons.settings,
-                      color: Colors.black,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 3,
+                            offset: const Offset(0, 0.2),
+                          ),
+                        ],
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SettingPage(),
+                            ),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.settings,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                    const SizedBox(height: 10),
+                    Container(
+                      width: 75,
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffFFF2D0),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(24.0),
+                        ),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => SettingPage(),
+                          //   ),
+                          // );
+                        },
+                        child: const Icon(
+                          Icons.star,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

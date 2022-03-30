@@ -11,7 +11,7 @@ class SettingPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         title: const Text(
-          'Setting',
+          'Settings',
           style: TextStyle(color: Colors.black),
         ),
         leading: const BackButton(

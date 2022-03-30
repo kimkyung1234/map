@@ -10,8 +10,9 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        leading: const BackButton(
-          color: Colors.black,
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: BackButton(color: Colors.black),
         ),
       ),
       body: Column(

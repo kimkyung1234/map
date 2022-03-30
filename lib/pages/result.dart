@@ -39,7 +39,7 @@ class ResultPage extends StatelessWidget {
             ));
           }
           return ListView.separated(
-            separatorBuilder: (context, index) => const SizedBox(height: 14),
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
             padding: const EdgeInsets.all(18),
             itemCount: snapshot.data?.length ?? 0,
             itemBuilder: (_, index) {
@@ -55,9 +55,10 @@ class ResultPage extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
+                    color: Colors.white70,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  height: 130,
+                  height: 80,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -65,11 +66,14 @@ class ResultPage extends StatelessWidget {
                         text: data?.placeName ?? '',
                         alignment: Alignment.topLeft,
                         overflow: TextOverflow.ellipsis,
+                        padding: const EdgeInsets.only(left: 7),
                       ),
                       flexibleText(
                         text: data?.text ?? '',
+                        textColor: Colors.grey,
                         fontSize: 14,
                         alignment: Alignment.topLeft,
+                        padding: const EdgeInsets.only(left: 10),
                       ),
                     ],
                   ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:map/pages/show.dart';
 import 'package:map/services/api.dart';
 import 'package:mapbox_search/mapbox_search.dart';
 
@@ -36,10 +36,11 @@ class RecommendWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.6,
                 child: GestureDetector(
                   onTap: () {
-                    mapController.move(
-                      LatLng(data?.geometry?.coordinates?[1] ?? 0,
-                          data?.geometry?.coordinates?[0] ?? 0),
-                      18,
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowPage(data: data!),
+                      ),
                     );
                   },
                   child: Container(

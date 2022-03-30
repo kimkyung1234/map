@@ -3,7 +3,7 @@ import 'package:mapbox_search/mapbox_search.dart';
 
 void main() async {
   List<MapBoxPlace>? a = await placesSearch(Keys.mapbox2);
-  print(a);
+  print(a?[1].context);
 }
 
 Future<List<MapBoxPlace>?> placesSearch(String apiKey) async {
@@ -12,7 +12,7 @@ Future<List<MapBoxPlace>?> placesSearch(String apiKey) async {
     limit: 5,
   );
 
-  var places = await placesService.getPlaces("patio");
+  var places = await placesService.getPlaces('a');
 
   print(places);
   return places;

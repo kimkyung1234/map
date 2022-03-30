@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:map/db/home_location.dart';
 import 'package:map/pages/home.dart';
 import 'package:map/providers/map_provider.dart';
 import 'package:map/providers/theme_changer.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<HomeLocation>(create: (_) => HomeLocation()),
         ChangeNotifierProvider<ThemeChanger>(create: (_) => ThemeChanger()),
         ChangeNotifierProvider<MapProvider>(create: (_) => MapProvider()),
       ],
